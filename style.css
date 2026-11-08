@@ -1,0 +1,305 @@
+body {
+    margin: 0;
+    background: #dee2d8;
+}
+
+.hero {
+    min-height: 100vh;
+    padding-top: 350px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  /* The final beautiful look your page settles into */
+    background-image: linear-gradient(to bottom,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(222, 226, 216, 0) 70%,
+    rgba(222, 226, 216, 1) 100%
+    ), url("wien1bg.png");
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    animation: introFade 0.9s ease-out forwards;
+}
+
+/* animation :P */
+
+@keyframes introFade {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+a {
+    position: left top;
+    text-align: left;
+    color: #dee2d8;
+    font-family: 'fantasy';
+    font-size: 20px;
+    margin: 10px 0 0 0;
+    text-shadow: 5px 5px 12px #3d4b2d;
+    transition: zoomfadeIn 0.9s ease-out forwards;
+
+}
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+    color: #dee2d8;
+    font-family: 'fantasy';
+    font-size: clamp(60px, 12vw, 170px);
+    text-shadow: 5px 5px 12px #3d4b2d;
+
+    animation: zoomfadeIn 0.9s ease-out forwards;
+}
+
+/* animation vol.2 :P */
+
+    @keyframes zoomfadeIn {
+    from{
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+
+}
+.p1 {
+    margin: 10px 0 0 0;
+    text-align: center;
+    color: #dee2d8;
+    font-family: 'fantasy';
+    font-size: 26px;
+    text-shadow: 5px 5px 12px #3d4b2d;
+    animation: zoomfadeIn 0.9s ease-out forwards;
+
+}
+
+.white-page {
+    background: #dee2d8;
+}
+
+
+.revealed-square-sectors {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 0 50px 50px; 
+}
+
+.reveal-square {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    aspect-ratio: 3 / 4;   
+
+    background-color: #3d4b2d;
+    color: #dee2d8;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-square.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.reveal-square.visible:hover {
+    transform: scale(1.06);
+    z-index: 10;       
+    transition-delay: 0ms !important; 
+    transition-duration: 0.3s;
+}
+
+.reveal-square h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+
+.polaroid {
+    position: relative;
+    width: 80%;
+    background: #dee2d8;
+    padding: 10px 10px 40px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+    transform: rotate(-3deg);
+    transition: transform 0.3s ease;
+}
+
+.reveal-square:nth-child(even) .polaroid {
+    transform: rotate(3deg);
+}
+
+.reveal-square:hover .polaroid {
+    transform: rotate(0deg);     
+}
+
+.polaroid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.polaroid .caption {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'fantasy';
+    font-size: 18px;
+    color: #3d4b2d;
+}
+
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 15px);       
+    transform: translateY(-50%);
+    width: 240px;
+    padding: 16px;
+    background: #fff;
+    color: #3d4b2d;
+    text-align: left;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+    opacity: 0;
+    pointer-events: none;        
+    transition: opacity 0.3s ease;
+}
+
+.info h4 { margin: 0 0 8px; font-size: 20px; }
+.info p  { margin: 0; font-size: 16px; line-height: 1.4; }
+
+.reveal-square:hover .info {
+    opacity: 1;
+}
+
+
+.reveal-square:nth-child(5n) .info {
+    left: auto;
+    right: calc(100% + 15px);
+}
+
+
+
+/* phone and etc. adaptation by not meeee */   
+
+
+
+/* ---------- tablets: 2 columns ---------- */
+@media (max-width: 900px) {
+    .revealed-square-sectors {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px 30px;
+    }
+
+    .reveal-square:nth-child(5n) .info { left: calc(100% + 15px); right: auto; }
+    .reveal-square:nth-child(2n) .info { left: auto; right: calc(100% + 15px); }
+    .info { width: 180px; }
+}
+
+/* ---------- phones: 1 column ---------- */
+@media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;            /* no sideways scrolling */
+    }
+
+    /* hero / background */
+    .hero {
+        min-height: 100svh;            /* real visible height on phones */
+        padding: 120px 20px 0;         /* was 350px at the top */
+        background-position: 60% top;  /* shifts which part of the photo shows. Adjust 60% */
+    }
+
+    h1 {
+        font-size: clamp(44px, 14vw, 80px);
+    }
+
+    .p1 {
+        font-size: 18px;
+        padding: 0 10px;
+    }
+
+    /* squares */
+    .revealed-square-sectors {
+        grid-template-columns: 1fr;  
+        gap: 24px;
+        padding: 0 20px 40px;
+        justify-items: center;
+    }
+
+    .reveal-square {
+        width: 100%;
+        max-width: 340px;
+        aspect-ratio: auto;            
+        padding: 24px 20px;
+    }
+
+    .polaroid {
+        width: 85%;
+    }
+
+
+    .info,
+    .reveal-square:nth-child(5n) .info,
+    .reveal-square:nth-child(2n) .info {
+        position: static;
+        transform: none;
+        width: 100%;
+        left: auto;
+        right: auto;
+        opacity: 1;
+        background: transparent;
+        color: #dee2d8;
+        box-shadow: none;
+        padding: 0;
+        text-align: center;
+    }
+
+    /* no zoom on tap */
+    .reveal-square.visible:hover {
+        transform: none;
+    }
+}
+
+
