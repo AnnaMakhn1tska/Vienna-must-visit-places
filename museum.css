@@ -1,0 +1,210 @@
+body {
+    margin: 0;
+    background: #dee2d8;
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+    color: #3d4b2d;
+    font-family: 'fantasy';
+    font-size: clamp(30px, 6vw, 60px);
+
+    animation: zoomfadeIn 0.9s ease-out forwards;
+}
+
+    @keyframes zoomfadeIn {
+    from{
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
+.white-page {
+    background: hsl(from #dee2d8  to #39462c);
+
+}
+
+
+.squares {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);   /* 2 per row by default */
+    gap: 40px;
+    margin-top: 50px;
+    padding: 0 50px 50px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.square {
+    position: relative;
+    display: flex;      
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    aspect-ratio: 16 / 9;
+    min-height: 220px;
+
+    background-color: #3d4b2d;
+    color: #dee2d8;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    opacity: 0;
+
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.square.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.square.visible:hover {
+    transform: scale(1.06);
+    z-index: 10;
+    transition-delay: 0ms !important;
+    transition-duration: 0.3s;
+}
+
+
+.polaroid {
+    position: absolute;
+    left: -30px;             
+    top: 50%;
+    width: 38%;
+    margin: 0;
+    padding: 10px 10px 0;    
+    background: #dee2d8;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+    transform: translateY(-50%) rotate(-5deg);
+    transition: transform 0.3s ease-out;
+}
+
+.polaroid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;         
+}
+
+.polaroid:hover{
+    background: #fff;
+    transform: scale(1.08);    
+}
+
+
+
+.polaroid figcaption {
+    padding: 10px 0 12px;
+    color: #333;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.square:hover .polaroid {
+    transform: translateY(-50%) rotate(-2deg); 
+}
+
+.square-text {
+    margin-left: 40%;        
+    text-align: left;
+}
+
+
+.search {
+    position: absolute;
+    top: -14px;
+    right: -14px;           
+
+    padding: 8px 14px;
+    background: #fbfff6;
+    color: #7bb439;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.search:hover {
+    background: #fff;
+    transform: scale(1.08);
+}
+
+
+.back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;                
+
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #3d4b2d;
+    color: #dee2d8;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s;
+}
+
+.back:hover {
+    transform: scale(1.06);
+}
+
+
+/* Phones: stack the picture above the text */
+@media (max-width: 700px) {
+    .polaroid {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 70%;
+        transform: rotate(-3deg);
+    }
+    .square:hover .polaroid {
+        transform: rotate(-1deg);
+    }
+    .square-text {
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+
+
+
+
+@media (min-width: 1600px) {
+    .squares {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+
+@media (max-width: 700px) {
+    .squares {
+        grid-template-columns: 1fr;
+        padding: 0 20px 30px;
+        gap: 25px;
+    }
+    .square {
+        aspect-ratio: auto;
+        flex-direction: column;
+    }
+}
